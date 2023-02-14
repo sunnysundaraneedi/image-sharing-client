@@ -31,15 +31,18 @@ const CreatePost = () => {
     if (formFields.prompt) {
       try {
         setGeneratingImg(true);
-        const response = await fetch("http://localhost:3002/api/v1/dalle", {
-          method: "POST",
-          headers: {
-            "Content-Type": "application/json",
-          },
-          body: JSON.stringify({
-            prompt: formFields.prompt,
-          }),
-        });
+        const response = await fetch(
+          "https://cheerful-deer-skirt.cyclic.app/api/v1/dalle",
+          {
+            method: "POST",
+            headers: {
+              "Content-Type": "application/json",
+            },
+            body: JSON.stringify({
+              prompt: formFields.prompt,
+            }),
+          }
+        );
 
         const data = await response.json();
         setFormFields({
@@ -63,13 +66,16 @@ const CreatePost = () => {
     if (formFields.prompt && formFields.photo) {
       setLoading(true);
       try {
-        const response = await fetch("http://localhost:3002/api/v1/post", {
-          method: "POST",
-          headers: {
-            "Content-Type": "application/json",
-          },
-          body: JSON.stringify({ ...formFields }),
-        });
+        const response = await fetch(
+          "https://cheerful-deer-skirt.cyclic.app/api/v1/post",
+          {
+            method: "POST",
+            headers: {
+              "Content-Type": "application/json",
+            },
+            body: JSON.stringify({ ...formFields }),
+          }
+        );
 
         await response.json();
         alert("Success");
